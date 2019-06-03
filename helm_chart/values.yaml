@@ -1,0 +1,38 @@
+## number of exporter instances
+##
+replicaCount: 1
+
+## restart policy for all containers
+##
+restartPolicy: Always
+
+env:
+  AWS_REGION: eu-west-1
+
+image:
+  repository: sqs-exporter
+  tag: latest
+  pullPolicy: IfNotPresent
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 20m
+    memory: 32Mi
+
+priorityClassName: ""
+
+nodeSelector: {}
+
+tolerations: {}
+
+podAnnotations: {}
+
+service:
+  type: ClusterIP
+  httpPort: 9108
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9108"
