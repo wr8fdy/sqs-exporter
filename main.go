@@ -56,7 +56,7 @@ func main() {
 
 	handler := promhttp.HandlerFor(r, promhttp.HandlerOpts{})
 
-	http.Handle("/metrics", handler)
+	http.Handle(*metricsPath, handler)
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(fmt.Sprintf(`<html>
 <head><title>AWS SQS exporter</title></head>
